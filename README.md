@@ -2,8 +2,6 @@
 
 A Streamlit application that generates quiz questions in various Indian languages using Google's Gemini AI model.
 
-![Indian Languages Quiz Generator](https://i.imgur.com/JQXpJXB.png)
-
 ## Features
 
 - **Multilingual Support**: Generate quizzes in 6 Indian languages:
