@@ -112,7 +112,7 @@ with st.sidebar:
         index=0
     )
     
-    topic = st.text_input("Enter Topic", "Indian History")
+    topic = st.text_input("Enter Topic", "భారత చరిత్ర ")
     num_questions = st.slider("Number of Questions", 5, 20, 10)
     
     st.markdown("---")
