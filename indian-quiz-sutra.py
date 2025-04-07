@@ -92,25 +92,9 @@ LANGUAGE_TEMPLATES = {
     """
 }
 
-# Default topics for each language
-DEFAULT_TOPICS = {
-    "Telugu": "భారత చరిత్ర",
-    "Hindi": "भारतीय इतिहास",
-    "Tamil": "இந்திய வரலாறு",
-    "Kannada": "ಭಾರತದ ಇತಿಹಾಸ",
-    "Malayalam": "ഇന്ത്യൻ ചരിത്രം",
-    "Bengali": "ভারতীয় ইতিহাস",
-    "Gujarati": "ભારતીય ઇતિહાસ"
-}
-
 # Streamlit UI
-st.title("🗣️ Multilingual Quiz with Sutra")
+st.title("🎯 Indian Languages Quiz Generator with Sutra")
 st.write("Generate quiz questions in various Indian languages powered by Educhain")
-
-# Initialize session state
-if 'current_language' not in st.session_state:
-    st.session_state.current_language = "Telugu"
-    st.session_state.current_topic = DEFAULT_TOPICS["Telugu"]
 
 # Sidebar for inputs
 with st.sidebar:
@@ -122,28 +106,18 @@ with st.sidebar:
     
     st.markdown("---")
     
-    # Language selector
-    selected_language = st.selectbox(
+    language = st.selectbox(
         "Select Language",
         options=list(LANGUAGE_TEMPLATES.keys()),
-        index=list(LANGUAGE_TEMPLATES.keys()).index(st.session_state.current_language)
+        index=0
     )
     
-    # Update topic when language changes
-    if selected_language != st.session_state.current_language:
-        st.session_state.current_language = selected_language
-        st.session_state.current_topic = DEFAULT_TOPICS[selected_language]
-    
-    # Topic input with language-specific default
-    topic = st.text_input("Enter Topic", value=st.session_state.current_topic)
-    
+    topic = st.text_input("Enter Topic", "Indian History")
     num_questions = st.slider("Number of Questions", 5, 20, 10)
     
     st.markdown("---")
     st.markdown("### Topics Suggestions:")
-    
-    # Display language-specific topic suggestions
-    if selected_language == "Telugu":
+    if language == "Telugu":
         st.markdown("""
         - భారత చరిత్ర (Indian History)
         - భూగోళశాస్త్రం (Geography)
@@ -152,7 +126,7 @@ with st.sidebar:
         - క్రీడలు (Sports)
         - ప్రస్తుత వ్యవహారాలు (Current Affairs)
         """)
-    elif selected_language == "Hindi":
+    elif language == "Hindi":
         st.markdown("""
         - भारतीय इतिहास (Indian History)
         - भूगोल (Geography)
@@ -161,7 +135,7 @@ with st.sidebar:
         - खेल (Sports)
         - समसामयिक घटनाएँ (Current Affairs)
         """)
-    elif selected_language == "Tamil":
+    elif language == "Tamil":
         st.markdown("""
         - இந்திய வரலாறு (Indian History)
         - புவியியல் (Geography)
@@ -170,7 +144,7 @@ with st.sidebar:
         - விளையாட்டு (Sports)
         - நடப்பு விவகாரங்கள் (Current Affairs)
         """)
-    elif selected_language == "Kannada":
+    elif language == "Kannada":
         st.markdown("""
         - ಭಾರತದ ಇತಿಹಾಸ (Indian History)
         - ಭೂಗೋಳಶಾಸ್ತ್ರ (Geography)
@@ -179,7 +153,7 @@ with st.sidebar:
         - ಕ್ರೀಡೆಗಳು (Sports)
         - ಪ್ರಸ್ತುತ ವಿದ್ಯಮಾನಗಳು (Current Affairs)
         """)
-    elif selected_language == "Malayalam":
+    elif language == "Malayalam":
         st.markdown("""
         - ഇന്ത്യൻ ചരിത്രം (Indian History)
         - ഭൂമിശാസ്ത്രം (Geography)
@@ -188,7 +162,7 @@ with st.sidebar:
         - കായികം (Sports)
         - നിലവിലെ കാര്യങ്ങൾ (Current Affairs)
         """)
-    elif selected_language == "Bengali":
+    elif language == "Bengali":
         st.markdown("""
         - ভারতীয় ইতিহাস (Indian History)
         - ভূগোল (Geography)
@@ -197,7 +171,7 @@ with st.sidebar:
         - খেলাধুলা (Sports)
         - সাম্প্রতিক ঘটনাবলী (Current Affairs)
         """)
-    elif selected_language == "Gujarati":
+    elif language == "Gujarati":
         st.markdown("""
         - ભારતીય ઇતિહાસ (Indian History)
         - ભૂગોળ (Geography)
@@ -212,18 +186,15 @@ if st.button("Generate Quiz"):
     if not api_key:
         st.error("Please enter your Sutra API key in the sidebar.")
     else:
-        with st.spinner(f"Generating {num_questions} questions in {selected_language}..."):
+        with st.spinner(f"Generating {num_questions} questions in {language}..."):
             try:
-                # Store the current topic in session state
-                st.session_state.current_topic = topic
-                
                 client = init_llm(api_key)
                 
                 # Generate questions using the selected language template
                 questions = client.qna_engine.generate_questions(
                     topic=topic,
                     num=num_questions,
-                    prompt_template=LANGUAGE_TEMPLATES[selected_language]
+                    prompt_template=LANGUAGE_TEMPLATES[language]
                 )
                 
                 # Display questions
@@ -259,4 +230,4 @@ if st.button("Generate Quiz"):
 
 # Footer
 st.markdown("---")
-st.markdown("Made with ❤️ using Sutra model and Educhain framework")
+st.markdown("Made with ❤️ using Educhain and Sutra model")
