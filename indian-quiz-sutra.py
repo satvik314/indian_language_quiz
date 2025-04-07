@@ -93,7 +93,7 @@ LANGUAGE_TEMPLATES = {
 }
 
 # Streamlit UI
-st.title("🎯 Multilingual Quiz using Sutra!")
+st.title("🗣️ Multilingual Quiz using Sutra")
 st.write("Generate quiz questions in various Indian languages powered by Educhain")
 
 # Sidebar for inputs
@@ -106,13 +106,36 @@ with st.sidebar:
     
     st.markdown("---")
     
+    # Default topics for each language
+    default_topics = {
+        "Telugu": "భారత చరిత్ర",
+        "Hindi": "भारतीय इतिहास",
+        "Tamil": "இந்திய வரலாறு",
+        "Kannada": "ಭಾರತದ ಇತಿಹಾಸ",
+        "Malayalam": "ഇന്ത്യൻ ചരിത്രം",
+        "Bengali": "ভারতীয় ইতিহাস",
+        "Gujarati": "ભારતીય ઇતિહાસ"
+    }
+    
     language = st.selectbox(
         "Select Language",
         options=list(LANGUAGE_TEMPLATES.keys()),
-        index=0
+        index=0,
+        key="language_selector"
     )
     
-    topic = st.text_input("Enter Topic", "భారత చరిత్ర ")
+    # Update topic when language changes
+    if "prev_language" not in st.session_state:
+        st.session_state.prev_language = language
+    
+    if st.session_state.prev_language != language:
+        st.session_state.prev_language = language
+        st.session_state.topic = default_topics[language]
+    
+    if "topic" not in st.session_state:
+        st.session_state.topic = default_topics[language]
+    
+    topic = st.text_input("Enter Topic", value=st.session_state.topic)
     num_questions = st.slider("Number of Questions", 5, 20, 10)
     
     st.markdown("---")
