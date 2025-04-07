@@ -93,7 +93,7 @@ LANGUAGE_TEMPLATES = {
 }
 
 # Streamlit UI
-st.title("🎯 Indian Languages Quiz Generator with Sutra")
+st.title("🗣️ Multilingual Quiz using Sutra")
 st.write("Generate quiz questions in various Indian languages powered by Educhain")
 
 # Sidebar for inputs
@@ -112,7 +112,7 @@ with st.sidebar:
         index=0
     )
     
-    topic = st.text_input("Enter Topic", "Indian History")
+    topic = st.text_input("Enter Topic")
     num_questions = st.slider("Number of Questions", 5, 20, 10)
     
     st.markdown("---")
