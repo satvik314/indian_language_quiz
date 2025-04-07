@@ -93,8 +93,8 @@ LANGUAGE_TEMPLATES = {
 }
 
 # Streamlit UI
-st.title("🎯 Indian Languages Quiz Generator")
-st.write("Generate quiz questions in various Indian languages using Sutra!")
+st.title("🎯 Indian Languages Quiz Generator with Sutra")
+st.write("Generate quiz questions in various Indian languages powered by Educhain")
 
 # Sidebar for inputs
 with st.sidebar:
@@ -117,14 +117,69 @@ with st.sidebar:
     
     st.markdown("---")
     st.markdown("### Topics Suggestions:")
-    st.markdown("""
-    - Indian History
-    - Geography
-    - Science & Technology
-    - Indian Culture
-    - Sports
-    - Current Affairs
-    """)
+    if language == "Telugu":
+        st.markdown("""
+        - భారత చరిత్ర (Indian History)
+        - భూగోళశాస్త్రం (Geography)
+        - విజ్ఞాన శాస్త్రం & సాంకేతిక (Science & Technology)
+        - భారతీయ సంస్కృతి (Indian Culture)
+        - క్రీడలు (Sports)
+        - ప్రస్తుత వ్యవహారాలు (Current Affairs)
+        """)
+    elif language == "Hindi":
+        st.markdown("""
+        - भारतीय इतिहास (Indian History)
+        - भूगोल (Geography)
+        - विज्ञान और प्रौद्योगिकी (Science & Technology)
+        - भारतीय संस्कृति (Indian Culture)
+        - खेल (Sports)
+        - समसामयिक घटनाएँ (Current Affairs)
+        """)
+    elif language == "Tamil":
+        st.markdown("""
+        - இந்திய வரலாறு (Indian History)
+        - புவியியல் (Geography)
+        - அறிவியல் & தொழில்நுட்பம் (Science & Technology)
+        - இந்திய கலாச்சாரம் (Indian Culture)
+        - விளையாட்டு (Sports)
+        - நடப்பு விவகாரங்கள் (Current Affairs)
+        """)
+    elif language == "Kannada":
+        st.markdown("""
+        - ಭಾರತದ ಇತಿಹಾಸ (Indian History)
+        - ಭೂಗೋಳಶಾಸ್ತ್ರ (Geography)
+        - ವಿಜ್ಞಾನ & ತಂತ್ರಜ್ಞಾನ (Science & Technology)
+        - ಭಾರತೀಯ ಸಂಸ್ಕೃತಿ (Indian Culture)
+        - ಕ್ರೀಡೆಗಳು (Sports)
+        - ಪ್ರಸ್ತುತ ವಿದ್ಯಮಾನಗಳು (Current Affairs)
+        """)
+    elif language == "Malayalam":
+        st.markdown("""
+        - ഇന്ത്യൻ ചരിത്രം (Indian History)
+        - ഭൂമിശാസ്ത്രം (Geography)
+        - ശാസ്ത്രവും സാങ്കേതികവിദ്യയും (Science & Technology)
+        - ഇന്ത്യൻ സംസ്കാരം (Indian Culture)
+        - കായികം (Sports)
+        - നിലവിലെ കാര്യങ്ങൾ (Current Affairs)
+        """)
+    elif language == "Bengali":
+        st.markdown("""
+        - ভারতীয় ইতিহাস (Indian History)
+        - ভূগোল (Geography)
+        - বিজ্ঞান ও প্রযুক্তি (Science & Technology)
+        - ভারতীয় সংস্কৃতি (Indian Culture)
+        - খেলাধুলা (Sports)
+        - সাম্প্রতিক ঘটনাবলী (Current Affairs)
+        """)
+    elif language == "Gujarati":
+        st.markdown("""
+        - ભારતીય ઇતિહાસ (Indian History)
+        - ભૂગોળ (Geography)
+        - વિજ્ઞાન અને ટેકનોલોજી (Science & Technology)
+        - ભારતીય સંસ્કૃતિ (Indian Culture)
+        - રમતગમત (Sports)
+        - સાંપ્રત પ્રવાહો (Current Affairs)
+        """)
 
 # Main content
 if st.button("Generate Quiz"):
@@ -175,4 +230,4 @@ if st.button("Generate Quiz"):
 
 # Footer
 st.markdown("---")
-st.markdown("Made with ❤️ using Educhain and Sutra model")
+st.markdown("Made with ❤️ using Sutra model and Educhain framework")
